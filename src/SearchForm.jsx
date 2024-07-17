@@ -1,16 +1,28 @@
 import React from "react";
+import { useGlobalContext } from "./context";
 
 const SearchForm = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const searchValue = e.target.elements.search.value; //we use name = "search"
+    if (!searchValue) return;
+    console.log(searchValue);
+  };
   return (
-    <div>
+    <section>
       <h1 className="title">Unsplash Images</h1>
-      <form className="search-form">
-        <input className="search-input" type="text" />
-        <button type="button" className="btn">
+      <form className="search-form" onSubmit={handleSubmit}>
+        <input
+          className="form-input search-input"
+          type="text"
+          name="search"
+          placeholder="cat"
+        />
+        <button type="submit" className="btn">
           Search
         </button>
       </form>
-    </div>
+    </section>
   );
 };
 
