@@ -4,12 +4,19 @@ import { createContext, useContext, useEffect, useState } from "react";
 const AppContext = createContext();
 
 //Provider component
-const AppProvider = ({ children }) => {
-  return <AppContext.Provider value={{}}>{children}</AppContext.Provider>;
+export const AppProvider = ({ children }) => {
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+  const toggleDarkTheme = () => {
+    const newDarkTheme = !isDarkTheme;
+    setIsDarkTheme(newDarkTheme);
+  };
+  return (
+    <AppContext.Provider value={{ isDarkTheme, toggleDarkTheme }}>
+      {children}
+    </AppContext.Provider>
+  );
 };
 
-const useGlobalContext = () => {
-  useContext(AppContext);
+export const useGlobalContext = () => {
+  return useContext(AppContext);
 };
-
-export { AppProvider, useGlobalContext };
