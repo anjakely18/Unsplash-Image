@@ -14,8 +14,12 @@ export const AppProvider = ({ children }) => {
     body.classList.toggle("dark-theme", newDarkTheme);
   };
 
+  //Search input
+  const [searchTerm, setSearchTerm] = useState("monkey");
   return (
-    <AppContext.Provider value={{ isDarkTheme, toggleDarkTheme }}>
+    <AppContext.Provider
+      value={{ isDarkTheme, toggleDarkTheme, searchTerm, setSearchTerm }}
+    >
       {children}
     </AppContext.Provider>
   );
